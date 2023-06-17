@@ -1,19 +1,47 @@
-class ProductCard:
-    def __init__(self, name, cost, quantity):
-        self.name = name
-        self.cost = cost
-        self.quantity = quantity
+import os
 
-    def decrease_quantity(self, number):
-        if self.quantity - number >= 0:
-            self.quantity -= number
-            print(f'Количество уменьшено на {number}. Теперь количество равно {self.quantity}')
-        else:
-            print(f'Нельзя уменьшить количество на {number}')
 
-    def changing_cost(self, number):
-        if self.cost + number >= 0:
-            self.cost += number
-            print(f'Стоимость изменена на {number}. Стоимость равна {self.cost}')
+class TodoList:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def add_item(self, item):
+        if os.path.isfile(self.filename):
+            with open(self.filename, 'r') as file:
+                items = file.read().splitlines()
         else:
-            print(f'Нельзя изменить стоимость на {self.cost}')
+            items = []
+
+        items.append(item)
+
+        with open(self.filename, 'w') as file:
+            for item in items:
+                file.write(item + '\n')
+
+    def remove_item(self, item):
+        if os.path.isfile(self.filename):
+            with open(self.filename, 'r') as file:
+                items = file.read().splitlines()
+        else:
+            items = []
+
+        if item in items:
+            items.remove(item)
+
+        with open(self.filename, 'w') as file:
+            for item in items:
+                file.write(item + '\n')
+
+    def display_items(self):
+        if os.path.isfile(self.filename):
+            with open(self.filename, 'r') as file:
+                items = file.read().splitlines()
+        else:
+            items = []
+
+        if items:
+            print("Список домашних дел:")
+            for item in items:
+                print(item)
+        else:
+            print("Список домашних дел пуст.")

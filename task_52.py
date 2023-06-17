@@ -1,19 +1,6 @@
-class Robot:
-    def __init__(self, name, speed):
-        self.name = name
-        self.speed = speed
-
-    def movement(self, time):
-        print(f'Робот {self.name} прошел за время {time} расстояние - {time * self.speed}')
-
-
-class CaterpillarRobot(Robot):
-    def __init__(self, name, speed, territory):
-        super().__init__(name, speed)
-        self.territory = territory
-
-
-class WheeledRobot(Robot):
-    def __init(self, name, speed, brand):
-        super().__init__(name, speed)
-        self.brand = brand
+arr = [1, 2, 3, 2, 1]
+reversed_arr = arr[::-1]
+if arr == reversed_arr:
+    print("Массив является палиндромом.")
+else:
+    print("Массив не является палиндромом.")
